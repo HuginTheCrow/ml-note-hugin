@@ -20,3 +20,16 @@ def loadDataSet(p, file_n):
         lineArr = line.strip().split()
         # 三个特征x0, x1, x2, x0=1
         dataMat.append([1.0, float(lineArr[0]), float(lineArr[1])])
+        labelMat.append(int(lineArr[2]))  # 样本标签y
+    return dataMat, labelMat
+
+def sigmoid(X):
+    return 1.0/(1+np.exp(-X))
+
+# 梯度下降法求回归系数a
+def gradAscent(dataMatIn, classLabels):
+    dataMatrix = np.mat(dataMatIn)             # 转换成numpy中的矩阵, X, 90 x 3
+    labelMat = np.mat(classLabels).transpose()  # 转换成numpy中的矩阵, y, 90 x 1
+    m, n = shape(dataMatrix)  # m=90, n=3
+    alpha = 0.001  # 学习率
+   
