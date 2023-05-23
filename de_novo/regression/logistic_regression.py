@@ -32,4 +32,10 @@ def gradAscent(dataMatIn, classLabels):
     labelMat = np.mat(classLabels).transpose()  # 转换成numpy中的矩阵, y, 90 x 1
     m, n = shape(dataMatrix)  # m=90, n=3
     alpha = 0.001  # 学习率
-   
+    maxCycles = 1000
+    weights = ones((n, 1))  # 初始参数, 3 x 1
+    for k in range(maxCycles):              # heavy on matrix operations
+        h = sigmoid(np.dot(dataMatrix, weights))     # 模型预测值, 90 x 1, 矩阵乘法
+        error = h - labelMat              # 真实值与预测值之间的误差, 90 x 1
+        temp = np.dot(dataMatrix.transpose(), error)  # 所有参数的偏导数, 3 x 1, 矩阵乘法
+        weights = weights - alpha * te
