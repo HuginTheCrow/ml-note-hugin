@@ -38,4 +38,17 @@ def gradAscent(dataMatIn, classLabels):
         h = sigmoid(np.dot(dataMatrix, weights))     # 模型预测值, 90 x 1, 矩阵乘法
         error = h - labelMat              # 真实值与预测值之间的误差, 90 x 1
         temp = np.dot(dataMatrix.transpose(), error)  # 所有参数的偏导数, 3 x 1, 矩阵乘法
-        weights = weights - alpha * te
+        weights = weights - alpha * temp  # 更新权重
+    return weights
+
+# 测试函数
+def test_logistic_regression():
+    dataArr, labelMat = loadDataSet(path, training_sample)  # 读入训练样本中的原始数据
+    A = gradAscent(dataArr, labelMat)  # 回归系数a的值
+    h = sigmoid(np.mat(dataArr, A))  # 预测结果h(a)的值, 矩阵乘法
+    print(dataArr, labelMat)
+    print(A)
+    print(h)
+    # plotBestFit(A)
+
+test_logistic_regression()
