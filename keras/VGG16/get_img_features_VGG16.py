@@ -12,3 +12,10 @@ import json
 
 def vgg16_model(weights_path):
     # this modle totaly has 22 layers with polling 
+    model = Sequential()
+    # Block 1
+    # 这里隐藏了每一层的深度维，本来应该是(3, 3, 3)
+    model.add(Conv2D(64, (3, 3), activation='relu', padding='same', 
+                     input_shape=(224, 224, 3), name='block1_conv1'))
+    model.add(Conv2D(64, (3, 3), activation='relu', padding='same', name='block1_conv2'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name
