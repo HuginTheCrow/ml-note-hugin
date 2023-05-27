@@ -33,4 +33,10 @@ def vgg16_model(weights_path):
 
     # Block 4
     model.add(Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv1'))
-  
+    model.add(Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv2'))
+    model.add(Conv2D(512, (3, 3), activation='relu', padding='same', name='block4_conv3'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='block4_pool'))
+
+    # Block 5
+    model.add(Conv2D(512, (3, 3), activation='relu', padding='same', name='block5_conv1'))
+    model.add(Conv2D(512,
