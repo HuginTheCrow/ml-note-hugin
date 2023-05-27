@@ -47,4 +47,16 @@ def vgg16_model(weights_path):
     model.add(Flatten())
     model.add(Dense(4096, activation='relu', name='fc1'))
     model.add(Dense(4096, activation='relu', name='fc2'))
-    mod
+    model.add(Dense(1000, activation='softmax', name='predictions'))
+    model.load_weights(weights_path)
+    return model
+
+def process_pic(img_path, model='', predict=True):
+    img_path = img_path
+    img = image.load_img(img_path, target_size=(224, 224))
+    x = image.img_to_array(img)
+    # 下面两步不是很理解
+    x = np.expand_dims(x, axis=0)
+    x = preprocess_input(x)
+    
+    if predict:  # predi
