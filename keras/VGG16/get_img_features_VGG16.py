@@ -81,4 +81,12 @@ def create_data_json(root_d, file_n):
             x = x.strip()
             x_list = x.split('\t')
             each_img_dic['filename'] = x_list[0]
-            each_img_d
+            each_img_dic['imgid'] = x_list[1]
+            each_img_dic['senences'] = []
+            each_img_dic['split'] = 'test'
+            each_img_dic['sentids'] = []
+            each_img_dic['predict_classes'] = x_list[2:]
+            a_dic['images'].append(each_img_dic)
+            with open(os.path.join(root_d, 'img', 'tasks.txt'), 'a') as f_handle:
+                f_handle.write(x_list[0] + '\n')
+    with open(os.path.j
