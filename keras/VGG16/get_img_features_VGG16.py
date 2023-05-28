@@ -59,4 +59,13 @@ def process_pic(img_path, model='', predict=True):
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x)
     
-    if predict:  # predi
+    if predict:  # predict pic's class
+        last_layer_features = model.predict(x)  # 1000 last_layer_features
+        # print('Predicted:', decode_predictions(last_layer_features, top=3)[0])
+        return decode_predictions(last_layer_features, top=3)[0]
+    else:  # return 4096 last_layer_features
+        last_layer_features = model.predict(x)
+        return last_layer_features
+
+def create_data_json(root_d, file_n):
+   
