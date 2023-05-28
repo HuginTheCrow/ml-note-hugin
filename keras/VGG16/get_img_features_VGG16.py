@@ -68,4 +68,17 @@ def process_pic(img_path, model='', predict=True):
         return last_layer_features
 
 def create_data_json(root_d, file_n):
-   
+    """
+    create dataset.json file and tasks.txt
+    :param root_d:
+    :param file_n:
+    :return:
+    """
+    a_dic = {'images': [], 'dataset': 'self_img'}
+    with open(os.path.join(root_d, file_n)) as f_handle:
+        for x in f_handle:
+            each_img_dic = {}
+            x = x.strip()
+            x_list = x.split('\t')
+            each_img_dic['filename'] = x_list[0]
+            each_img_d
