@@ -107,4 +107,14 @@ def main(params, model):
                 output_str = '\t'.join([f, str(line)] + predict_list)
                 line += 1
                 with open(os.path.join(self_pic_dir, 'predict_images_class.txt'), 'a') as f_handle:
-   
+                    f_handle.write(output_str + '\n')
+    
+    # get images' features
+    features = np.zeros([line, 4096])
+    line2 = 0
+    # 去掉最后一层后，构建一个新的model
+    model.layers.pop()
+    model2 = Model(model.input, model.layers[-1].output)
+    for root, dirs, files in os.walk(os.path.join(self_pic_dir, 'img')):
+        for f in files:
+            if f.ends
