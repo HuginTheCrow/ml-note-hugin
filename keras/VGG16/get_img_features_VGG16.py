@@ -89,4 +89,16 @@ def create_data_json(root_d, file_n):
             a_dic['images'].append(each_img_dic)
             with open(os.path.join(root_d, 'img', 'tasks.txt'), 'a') as f_handle:
                 f_handle.write(x_list[0] + '\n')
-    with open(os.path.j
+    with open(os.path.join(root_d, 'self_img_dataset.json'), 'a') as f_handle:
+        f_handle.write(json.dumps(a_dic, indent=2))
+
+
+def main(params, model):
+    # predict images' classes
+    self_pic_dir = params['self_pic_dir']
+    line = 0
+    for root, dirs, files in os.walk(os.path.join(self_pic_dir, 'img')):
+        for f in files:
+            if f.endswith('jpg'):
+                # print(f)
+                img_path 
