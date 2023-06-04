@@ -101,4 +101,10 @@ def main(params, model):
         for f in files:
             if f.endswith('jpg'):
                 # print(f)
-                img_path 
+                img_path = os.path.join(root, f)
+                predict_results = process_pic(img_path, model=model)
+                predict_list = [': '.join(str(i) for i in list(_[1:])) for _ in predict_results]
+                output_str = '\t'.join([f, str(line)] + predict_list)
+                line += 1
+                with open(os.path.join(self_pic_dir, 'predict_images_class.txt'), 'a') as f_handle:
+   
