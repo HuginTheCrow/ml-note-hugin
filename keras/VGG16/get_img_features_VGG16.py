@@ -125,4 +125,13 @@ def main(params, model):
                 line2 += 1
     np.save(os.path.join(self_pic_dir, 'self_img_vgg_feats'), features)
     # features_file = 'self_img_vgg_feats.npy'
-    class_file = '
+    class_file = 'predict_images_class.txt'
+    create_data_json(self_pic_dir, class_file)
+
+
+if __name__ == '__main__':
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    print(BASE_DIR)
+    # 'VGG16 Model pre-training weights in kernels based on tensorflow'
+    weights_path = os.path.join(BASE_DIR, 'VGG16_weights', 'vgg16_weights_tf_dim_ordering_tf_kernels.h5')
+    if not os.path.ex
