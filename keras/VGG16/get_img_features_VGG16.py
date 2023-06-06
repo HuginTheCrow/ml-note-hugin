@@ -140,4 +140,12 @@ if __name__ == '__main__':
         print('please download "vgg16_weights_tf_dim_ordering_tf_kernels.h5" and put it into ', weights_path)
     model = vgg16_model(weights_path)
     self_pic_dir = os.path.join(BASE_DIR, 'self_pic')
-  
+    parser = argparse.ArgumentParser()
+    parser.add_argument('self_pic_dir', default=self_pic_dir,
+                        type=str, help='self pictures dir')
+    args = parser.parse_args([self_pic_dir])
+    params = vars(args)  # convert to ordinary dict
+    print('parsed parameters: ')
+    print(json.dumps(params, indent=2))
+    print('start to predict images\' classes and get VGG features...')
+    main(params, 
