@@ -134,4 +134,10 @@ if __name__ == '__main__':
     print(BASE_DIR)
     # 'VGG16 Model pre-training weights in kernels based on tensorflow'
     weights_path = os.path.join(BASE_DIR, 'VGG16_weights', 'vgg16_weights_tf_dim_ordering_tf_kernels.h5')
-    if not os.path.ex
+    if not os.path.exists(weights_path):
+        # this file can be downloaded from https://github.com/fchollet/deep-learning-models/releases
+        # or https://pan.baidu.com/s/1dEA0sXb
+        print('please download "vgg16_weights_tf_dim_ordering_tf_kernels.h5" and put it into ', weights_path)
+    model = vgg16_model(weights_path)
+    self_pic_dir = os.path.join(BASE_DIR, 'self_pic')
+  
