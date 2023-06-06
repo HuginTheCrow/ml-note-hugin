@@ -117,4 +117,12 @@ def main(params, model):
     model2 = Model(model.input, model.layers[-1].output)
     for root, dirs, files in os.walk(os.path.join(self_pic_dir, 'img')):
         for f in files:
-            if f.ends
+            if f.endswith('jpg'):
+                print(f)
+                # f = 'butterfly1.jpg'
+                img_path = os.path.join(root, f)
+                features[line2] = process_pic(img_path, model=model2, predict=False)
+                line2 += 1
+    np.save(os.path.join(self_pic_dir, 'self_img_vgg_feats'), features)
+    # features_file = 'self_img_vgg_feats.npy'
+    class_file = '
