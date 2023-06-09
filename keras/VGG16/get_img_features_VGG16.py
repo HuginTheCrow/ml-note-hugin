@@ -148,4 +148,5 @@ if __name__ == '__main__':
     print('parsed parameters: ')
     print(json.dumps(params, indent=2))
     print('start to predict images\' classes and get VGG features...')
-    main(params, 
+    main(params, model)
+
