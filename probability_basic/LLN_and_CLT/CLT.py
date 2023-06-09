@@ -27,3 +27,17 @@ def sampling2pmf(n, dist, m=100000):
     # pmf = cnt / len(sum_of_samples)
     # return val, pmf
     return sum_of_samples
+
+
+def plot(n, dist, subplot, plt_handle, dist_type):
+    """
+    :param n: sample size
+    :param dist: distribution of each single sample
+    :param subplot: location of sub-graph, such as 221, 222, 223, 224
+    :param plt_handle: plt object
+    :param dist_type: the type of distribution
+    :return: plt object
+    """
+    bins = 20000
+    plt = plt_handle
+    plt.subplot(subplot)
