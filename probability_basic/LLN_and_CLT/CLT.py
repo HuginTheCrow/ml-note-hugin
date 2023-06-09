@@ -50,4 +50,17 @@ def plot(n, dist, subplot, plt_handle, dist_type):
     plt.ylabel('Probability')
     plt.title('Sum of {} dist. (n={})'.format(dist_type, n))
     # normal distribution
-    norm_dis = s
+    norm_dis = stats.norm(mu, sigma)
+    norm_x = np.linspace(mu - 3 * sigma, mu + 3 * sigma, bins)
+    pdf1 = norm_dis.pdf(norm_x)
+    plt.plot(norm_x, pdf1, 'r--', alpha=0.4)
+    return plt
+
+size = [1, 2, 3, 4, 8, 10]
+
+# sum of bernoulli distribution
+# dist_type = 'bern'
+# bern_para = [0.99]
+# single_sample_dist = stats.bernoulli(p=bern_para[0])  # 定义一个伯努利分布
+
+# sum of binomial 
