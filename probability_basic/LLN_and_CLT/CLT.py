@@ -41,3 +41,13 @@ def plot(n, dist, subplot, plt_handle, dist_type):
     bins = 20000
     plt = plt_handle
     plt.subplot(subplot)
+    mu = n * dist.mean()
+    sigma = np.sqrt(n * dist.var())
+    samples = sampling2pmf(n=n, dist=dist)
+    # print(samples)
+    # normed参数可以对直方图进行标准化，从而使纵坐标表示概率而不是次数
+    plt.hist(samples, normed=True, bins=50, histtype='stepfilled', alpha=1)
+    plt.ylabel('Probability')
+    plt.title('Sum of {} dist. (n={})'.format(dist_type, n))
+    # normal distribution
+    norm_dis = s
