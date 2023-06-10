@@ -63,4 +63,18 @@ size = [1, 2, 3, 4, 8, 10]
 # bern_para = [0.99]
 # single_sample_dist = stats.bernoulli(p=bern_para[0])  # 定义一个伯努利分布
 
-# sum of binomial 
+# sum of binomial distribution
+# dist_type = 'bino'
+# bino_para = [20, 0.4]
+# single_sample_dist = stats.binom(n=bino_para[0], p=bino_para[1])  # 定义一个二项分布
+
+# sum of uniform distribution
+dist_type = 'uniform'
+uniform_para = [3, 2]
+single_sample_dist = stats.uniform(loc=uniform_para[0], scale=uniform_para[1])  # 定义一个均匀分布
+
+
+# 下面是利用matplotlib画图
+plt.figure(1)
+plt = plot(n=size[0], dist=single_sample_dist, subplot=321, plt_handle=plt, dist_type=dist_type)
+plt = 
