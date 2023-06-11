@@ -23,4 +23,18 @@ def sampling2pmf(n, dist, t=100000):
         for j in range(n):  # n次独立的试验
             samples.append(current_dist.rvs())
         sum_of_samples[i] = np.sum(samples)
-    return sum_of_sample
+    return sum_of_samples
+
+
+def plot(n, dist, subplot):
+    """
+    :param n: sample size
+    :param dist: distribution of each single sample
+    :param subplot: location of sub-graph, such as 221, 222, 223, 224
+    """
+    plt.subplot(3, 2, subplot)
+    mu = n * dist.mean()
+    sigma = np.sqrt(n * dist.var())
+    samples = sampling2pmf(n=n, dist=dist)
+    # normed参数可以对直方图进行标准化，从而使纵坐标表示概率而不是次数
+    plt.hist(samples, normed=True, bins=100, 
