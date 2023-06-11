@@ -47,3 +47,14 @@ def plot(n, dist, subplot):
     plt.plot(norm_x, pdf, 'r--', alpha=0.6, label='N(${0:.0f}, {1:.2f}^2$)'.format(mu, sigma))
     plt.legend(loc='upper left', prop={'size': 8})
 
+size = [1, 2, 3, 4, 8, 10]
+
+# sum of uniform distribution
+dist_type = 'uniform'
+uniform_para = [3, 2]
+single_sample_dist = stats.uniform(loc=uniform_para[0], scale=uniform_para[1])  # 定义一个均匀分布
+
+# 下面是利用matplotlib画图
+plt.figure(figsize=(10, 7))  # bigger size
+plt.suptitle('Sum of {} dist. random variables (RVs) converge to a Gaussian distribution (CLT)'.format(dist_type),
+         
