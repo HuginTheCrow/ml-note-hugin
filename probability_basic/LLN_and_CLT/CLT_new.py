@@ -13,3 +13,14 @@ Created on Sun Nov 17 18:44:37 2017
 def sampling2pmf(n, dist, t=100000):
     """
     n: sample size for each experiment
+    t: how many times do you do experiment, fix in 100000
+    dist: frozen distribution
+    """
+    current_dist = dist
+    sum_of_samples = np.zeros(t)
+    for i in range(t):
+        samples = []
+        for j in range(n):  # n次独立的试验
+            samples.append(current_dist.rvs())
+        sum_of_samples[i] = np.sum(samples)
+    return sum_of_sample
