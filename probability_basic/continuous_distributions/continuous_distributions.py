@@ -24,4 +24,17 @@ def uniform_distribution(loc=0, scale=1):
             lw=2, label='frozen pdf')
 
     # 计算ppf分别等于0.001, 0.5, 0.999时的x值
-    vals = uniform_dis.ppf([0.001, 
+    vals = uniform_dis.ppf([0.001, 0.5, 0.999])
+    print(vals)  # [ 2.004  4.     5.996]
+
+    # Check accuracy of cdf and ppf
+    print(np.allclose([0.001, 0.5, 0.999], uniform_dis.cdf(vals)))  # Ture
+
+    r = uniform_dis.rvs(size=10000)
+    ax.hist(r, normed=True, histtype='stepfilled', alpha=0.2)
+    plt.ylabel('Probability')
+    plt.title(r'PDF of Unif({}, {})'.format(loc, loc+scale))
+    ax.legend(loc='best', frameon=False)
+    plt.show()
+
+# 
