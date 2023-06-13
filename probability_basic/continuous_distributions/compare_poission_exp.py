@@ -25,4 +25,7 @@ def compare_poission_exp():
     ax.plot(x, y3, 'b-', label='lambda=5')
     ax.legend(loc='best', frameon=False)
     plt.ylabel('Probability')
-    plt.title('CDF 
+    plt.title('CDF of exponential distribution')
+    plt.show()
+
+compare_poission_exp()
