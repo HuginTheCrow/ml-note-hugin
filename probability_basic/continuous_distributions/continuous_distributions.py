@@ -49,4 +49,17 @@ def exponential_dis(loc=0, scale=1.0):
     :return:
     """
     exp_dis = stats.expon(loc=loc, scale=scale)
-    x = np.linspace(exp_dis.ppf(0
+    x = np.linspace(exp_dis.ppf(0.000001),
+                    exp_dis.ppf(0.999999), 100)
+    fig, ax = plt.subplots(1, 1)
+
+    # 直接传入参数
+    ax.plot(x, stats.expon.pdf(x, loc=loc, scale=scale), 'r-',
+            lw=5, alpha=0.6, label='uniform pdf')
+
+    # 从冻结的均匀分布取值
+    ax.plot(x, exp_dis.pdf(x), 'k-',
+            lw=2, label='frozen pdf')
+
+    # 计算ppf分别等于0.001, 0.5, 0.999时的x值
+    vals = exp_dis.ppf([0.001,
