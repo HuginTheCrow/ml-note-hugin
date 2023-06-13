@@ -96,4 +96,24 @@ def diff_exp_dis():
     ax.plot(x3, exp_dis_2.pdf(x3), 'r-', lw=2, label='lambda = 0.5')
     plt.ylabel('Probability')
     plt.title(r'PDF of Exponential Distribution')
-    ax.legend(loc='best'
+    ax.legend(loc='best', frameon=False)
+    plt.show()
+
+# diff_exp_dis()
+
+
+def normal_dis(miu=0, sigma=1):
+    """
+    正态分布有两个参数
+    :param miu: 均值
+    :param sigma: 标准差
+    :return:
+    """
+
+    norm_dis = stats.norm(miu, sigma)  # 利用相应的分布函数及参数，创建一个冻结的正态分布(frozen distribution)
+    x = np.linspace(-5, 15, 101)  # 在区间[-5, 15]上均匀的取101个点
+
+    # 计算该分布在x中个点的概率密度分布函数值(PDF)
+    pdf = norm_dis.pdf(x)
+
+    # 计算该分布在x中个点的累计分布函数
