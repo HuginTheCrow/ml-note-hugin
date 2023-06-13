@@ -75,4 +75,18 @@ def exponential_dis(loc=0, scale=1.0):
     ax.legend(loc='best', frameon=False)
     plt.show()
 
-# expo
+# exponential_dis(loc=0, scale=2)
+
+
+def diff_exp_dis():
+    """
+    不同参数下的指数分布
+    :return:
+    """
+    exp_dis_0_5 = stats.expon(scale=0.5)
+    exp_dis_1 = stats.expon(scale=1)
+    exp_dis_2 = stats.expon(scale=2)
+
+    x1 = np.linspace(exp_dis_0_5.ppf(0.001), exp_dis_0_5.ppf(0.9999), 100)
+    x2 = np.linspace(exp_dis_1.ppf(0.001), exp_dis_1.ppf(0.999), 100)
+    x3 = np.linspace(exp_dis_2.ppf(0.001)
