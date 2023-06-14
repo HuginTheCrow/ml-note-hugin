@@ -130,4 +130,21 @@ def normal_dis(miu=0, sigma=1):
     plt.legend(loc='best', frameon=False)
     # plot cdf
     plt.subplot(212)
-    p
+    plt.plot(x, cdf, 'r-', label='cdf')
+    plt.ylabel('Probability')
+    plt.legend(loc='best', frameon=False)
+
+    plt.show()
+
+# normal_dis(miu=5, sigma=3)
+
+
+def diff_normal_dis():
+    """
+    不同参数下的指数分布
+    :return:
+    """
+    norm_dis_0 = stats.norm(0, 1)  # 标准正态分布
+    norm_dis_1 = stats.norm(0, 0.5)  # 标准正态分布
+    norm_dis_2 = stats.norm(0, 2)  # 标准正态分布
+    norm_dis_3 = 
