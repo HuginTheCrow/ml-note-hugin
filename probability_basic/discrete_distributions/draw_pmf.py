@@ -48,4 +48,13 @@ def binom_pmf(n=1, p=0.1):
 def poisson_pmf(mu=3):
     """
     泊松分布
-    https://docs.scipy.org/doc
+    https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html#scipy.stats.poisson
+    :param mu: 单位时间（或单位面积）内随机事件的平均发生率
+    :return:
+    """
+    poisson_dis = stats.poisson(mu)
+    x = np.arange(poisson_dis.ppf(0.001), poisson_dis.ppf(0.999))
+    print(x)
+    fig, ax = plt.subplots(1, 1)
+    ax.plot(x, poisson_dis.pmf(x), 'bo', ms=8, label='poisson pmf')
+    ax.vlines(x, 0, poisson_dis.pmf(x), colors='b
