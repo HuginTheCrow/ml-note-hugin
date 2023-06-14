@@ -154,4 +154,13 @@ def diff_normal_dis():
     x2 = np.linspace(norm_dis_2.ppf(1e-6), norm_dis_2.ppf(0.999999), 1000)
     x3 = np.linspace(norm_dis_3.ppf(1e-6), norm_dis_3.ppf(0.999999), 1000)
     fig, ax = plt.subplots(1, 1)
-    ax.plot(x0, norm_dis_0.
+    ax.plot(x0, norm_dis_0.pdf(x0), 'r-', lw=2, label=r'miu=0, sigma=1')
+    ax.plot(x1, norm_dis_1.pdf(x1), 'b-', lw=2, label=r'miu=0, sigma=0.5')
+    ax.plot(x2, norm_dis_2.pdf(x2), 'g-', lw=2, label=r'miu=0, sigma=2')
+    ax.plot(x3, norm_dis_3.pdf(x3), 'y-', lw=2, label=r'miu=2, sigma=2')
+    plt.ylabel('Probability')
+    plt.title(r'PDF of Normal Distribution')
+    ax.legend(loc='best', frameon=False)
+    plt.show()
+
+diff_normal_di
