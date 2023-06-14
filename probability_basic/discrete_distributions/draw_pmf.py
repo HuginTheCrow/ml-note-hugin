@@ -57,4 +57,21 @@ def poisson_pmf(mu=3):
     print(x)
     fig, ax = plt.subplots(1, 1)
     ax.plot(x, poisson_dis.pmf(x), 'bo', ms=8, label='poisson pmf')
-    ax.vlines(x, 0, poisson_dis.pmf(x), colors='b
+    ax.vlines(x, 0, poisson_dis.pmf(x), colors='b', lw=5, alpha=0.5)
+    ax.legend(loc='best', frameon=False)
+    plt.ylabel('Probability')
+    plt.title('PMF of poisson distribution(mu={})'.format(mu))
+    plt.show()
+
+# poisson_pmf(mu=8)
+
+
+def plot_bar():
+    y = [1, 2, 3, 4, 5]
+    x_name = ['apple', 'orange', 'pear', 'mango', 'peach']
+    x = np.arange(len(x_name))
+    plt.bar(x, y)
+    plt.xticks(x, x_name)
+    plt.show()
+
+#
