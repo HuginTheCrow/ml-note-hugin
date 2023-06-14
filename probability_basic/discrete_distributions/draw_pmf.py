@@ -18,4 +18,20 @@ def bernoulli_pmf(p=0.0):
     plt.xticks(x, x_name)
     plt.ylabel('Probability')
     plt.title('PMF of bernoulli distribution')
-    plt
+    plt.show()
+
+# bernoulli_pmf(p=0.3)
+
+
+def binom_pmf(n=1, p=0.1):
+    """
+    二项分布有两个参数
+    https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html#scipy.stats.binom
+    :param n:试验次数
+    :param p:单次实验成功的概率
+    :return:
+    """
+    binom_dis = stats.binom(n, p)
+    x = np.arange(binom_dis.ppf(0.0001), binom_dis.ppf(0.9999))
+    print(x)  # [ 0.  1.  2.  3.  4.]
+    fig, ax = p
