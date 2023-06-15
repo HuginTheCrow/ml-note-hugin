@@ -74,4 +74,17 @@ def plot_bar():
     plt.xticks(x, x_name)
     plt.show()
 
-#
+# plot_bar()
+
+
+def custom_made_discrete_dis_pmf():
+    """
+    https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_discrete.html
+    :return:
+    """
+    xk = np.arange(7)  # 所有可能的取值
+    print(xk)  # [0 1 2 3 4 5 6]
+    pk = (0.1, 0.2, 0.3, 0.1, 0.1, 0.0, 0.2)  # 各个取值的概率
+    custm = stats.rv_discrete(name='custm', values=(xk, pk))
+
+    X = custm.rv
