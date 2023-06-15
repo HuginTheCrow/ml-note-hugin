@@ -87,4 +87,17 @@ def custom_made_discrete_dis_pmf():
     pk = (0.1, 0.2, 0.3, 0.1, 0.1, 0.0, 0.2)  # 各个取值的概率
     custm = stats.rv_discrete(name='custm', values=(xk, pk))
 
-    X = custm.rv
+    X = custm.rvs(size=20)
+    print(X)
+
+    fig, ax = plt.subplots(1, 1)
+    ax.plot(xk, custm.pmf(xk), 'ro', ms=8, mec='r')
+    ax.vlines(xk, 0, custm.pmf(xk), colors='r', linestyles='-', lw=2)
+    plt.title('Custom made discrete distribution(PMF)')
+    plt.ylabel('Probability')
+    plt.show()
+
+# custom_made_discrete_dis_pmf()
+
+
+def sampling_and_empirical_dis():
