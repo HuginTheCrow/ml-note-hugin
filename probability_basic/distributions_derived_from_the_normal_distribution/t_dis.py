@@ -24,4 +24,20 @@ def calculate_ci(ci_value, data):
     """
     df = len(data) - 1  # degrees of freedom
     ci = stats.t.interval(ci_value, df, loc=np.mean(data),
-                          scale=stats.sem(
+                          scale=stats.sem(data))
+    return ci
+norm_dis = stats.norm(0, 2)
+demo_data1 = norm_dis.rvs(10)
+print(demo_data1)
+alpha2 = 0.95
+# (-0.2217121415878075, 1.7026114809498547)
+print(calculate_ci(alpha2, demo_data1))
+
+
+# standard deviation vs standard error of the mean(SEM)
+# SEM: 平均值标准误差
+a = [69, 54, 80]
+b = [47, 68, 52]
+print(np.std(a), np.std(b))  # 样本的标准差
+print(stats.sem(a), stats.sem(b))  # 样本均值的标准差(对SEM的估计)
+# 
