@@ -128,4 +128,6 @@ def sampling_and_empirical_dis():
     plt.vlines(val2, 0, pmf_X2, colors='g', linestyles='-', lw=3, label='X2 empir. pmf')
     plt.legend(loc='best', frameon=False)
     plt.ylabel('Probability')
-    p
+    plt.show()
+
+sampling_and_empirical_dis()
