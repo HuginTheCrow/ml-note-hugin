@@ -120,4 +120,12 @@ def sampling_and_empirical_dis():
     plt.vlines(xk, 0, custm.pmf(xk), colors='r', lw=5, alpha=0.2)
     plt.vlines(val1, 0, pmf_X1, colors='b', linestyles='-', lw=3, label='X1 empir. pmf')
     plt.legend(loc='best', frameon=False)
-    plt.ylabel('Probabilit
+    plt.ylabel('Probability')
+    plt.title('Theoretical dist. PMF vs Empirical dist. PMF')
+    plt.subplot(212)
+    plt.plot(xk, custm.pmf(xk), 'ro', ms=8, mec='r', label='theor. pmf')
+    plt.vlines(xk, 0, custm.pmf(xk), colors='r', lw=5, alpha=0.2)
+    plt.vlines(val2, 0, pmf_X2, colors='g', linestyles='-', lw=3, label='X2 empir. pmf')
+    plt.legend(loc='best', frameon=False)
+    plt.ylabel('Probability')
+    p
