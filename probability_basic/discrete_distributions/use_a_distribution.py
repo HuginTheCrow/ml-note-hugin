@@ -26,4 +26,6 @@ plt.legend(loc='best', frameon=False)
 plt.subplot(212)
 plt.plot(x, cdf, 'r-', label='cdf')
 plt.ylabel('Probability')
-plt.legend(loc='best', fram
+plt.legend(loc='best', frameon=False)
+
+plt.show()
