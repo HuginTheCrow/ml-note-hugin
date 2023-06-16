@@ -61,4 +61,11 @@ def diff_chi2_dis():
     ax.plot(x3, chi2_dis_4.pdf(x3), 'r-', lw=2, label='df = 4')
     ax.plot(x4, chi2_dis_10.pdf(x4), 'b-', lw=2, label='df = 10')
     ax.plot(x5, chi2_dis_20.pdf(x5), 'y-', lw=2, label='df = 20')
-    plt.ylab
+    plt.ylabel('Probability')
+    plt.title(r'PDF of $\chi^2$ Distribution')
+    ax.legend(loc='best', frameon=False)
+    plt.show()
+
+
+# chi2_distribution(df=20)
+diff_chi2_dis()
