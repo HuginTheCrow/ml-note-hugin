@@ -55,4 +55,8 @@ def calculate_p_value(data, ref_value):
     t_dist = stats.t(len(data) - 1)
     return 2*t_dist.sf(t_val)
 # 计算p值，t-test
-# 零假设：学生的平均成绩
+# 零假设：学生的平均成绩与110分没有差别
+scores = np.array([109.4, 76.2, 128.7, 93.7, 85.6, 117.7,
+                   117.2, 87.3, 100.3, 55.1])
+print(calculate_p_value(data=scores, ref_value=110))
+# 0.0995384365279, p-value不显著
