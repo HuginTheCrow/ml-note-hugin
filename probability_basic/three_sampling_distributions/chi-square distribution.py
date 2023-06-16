@@ -47,4 +47,11 @@ def diff_chi2_dis():
     # chi2_dis_0_5 = stats.chi2(df=0.5)
     chi2_dis_1 = stats.chi2(df=1)
     chi2_dis_4 = stats.chi2(df=4)
-    chi2_dis_10 = stats.
+    chi2_dis_10 = stats.chi2(df=10)
+    chi2_dis_20 = stats.chi2(df=20)
+
+    # x1 = np.linspace(chi2_dis_0_5.ppf(0.01), chi2_dis_0_5.ppf(0.99), 100)
+    x2 = np.linspace(chi2_dis_1.ppf(0.65), chi2_dis_1.ppf(0.9999999), 100)
+    x3 = np.linspace(chi2_dis_4.ppf(0.000001), chi2_dis_4.ppf(0.999999), 100)
+    x4 = np.linspace(chi2_dis_10.ppf(0.000001), chi2_dis_10.ppf(0.99999), 100)
+    x5 = np.linspace(chi2_dis_20.ppf(0.00000001), chi2_dis_20.p
