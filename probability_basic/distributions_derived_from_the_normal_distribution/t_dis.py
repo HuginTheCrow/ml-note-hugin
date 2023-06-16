@@ -40,4 +40,19 @@ a = [69, 54, 80]
 b = [47, 68, 52]
 print(np.std(a), np.std(b))  # 样本的标准差
 print(stats.sem(a), stats.sem(b))  # 样本均值的标准差(对SEM的估计)
-# 
+# 10.6562449088 8.95668589503
+# 7.53510303697 6.33333333333
+
+
+def calculate_p_value(data, ref_value):
+    """
+    假设检验，计算p-value
+    :param data:
+    :param ref_value: 与data均值进行比较的参考值
+    :return: p-value
+    """
+    t_val = (ref_value - np.mean(data)) / stats.sem(data)
+    t_dist = stats.t(len(data) - 1)
+    return 2*t_dist.sf(t_val)
+# 计算p值，t-test
+# 零假设：学生的平均成绩
