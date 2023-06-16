@@ -20,4 +20,16 @@ def chi2_distribution(df=1):
 
     # 从冻结的均匀分布取值, Freeze the distribution and display the frozen pdf
     chi2_dis = stats.chi2(df=df)
-   
+    ax.plot(x, chi2_dis.pdf(x), 'k-',
+            lw=2, label='frozen pdf')
+
+    # 计算ppf分别等于0.001, 0.5, 0.999时的x值
+    vals = chi2_dis.ppf([0.001, 0.5, 0.999])
+    print(vals)  # [ 2.004  4.     5.996]
+
+    # Check accuracy of cdf and ppf
+    print(np.allclose([0.001, 0.5, 0.999], chi2_dis.cdf(vals)))  # Ture
+
+    # Generate random numbers
+    r = chi2_dis.rvs(size=10000)
+    ax.hist(r, normed=
