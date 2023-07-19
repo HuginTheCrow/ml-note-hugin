@@ -65,4 +65,14 @@ def self_cross_val_score(sgd_clf, X, y, cv):
     for train_index, test_index in skfolds.split(X_train, y_train_5):
         clone_clf = clone(sgd_clf)
         X_train_folds = X[train_index]
-        y_train_folds = y
+        y_train_folds = y[train_index]
+        X_test_fold = X[test_index]
+        y_test_fold = y[test_index]
+
+        clone_clf.fit(X_train_folds, y_train_folds)
+        y_pred = clone_clf.predict(X_test_fold)
+        n_correct = sum(y_pred == y_test_fold)  # 对预测正确的数字计数
+        return (n_correct / len(y_pred))
+
+# 上面的方法等价于下面的cross_val_score
+from sklearn.model_selection import 
