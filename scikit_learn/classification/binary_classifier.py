@@ -34,4 +34,15 @@ def show_digit_image(digit_features):
 # The MNIST dataset is acturally already split into a training set(the first 60,000 images)
 # and a test set(the last 10,000 images)
 train_num = 60000
-X_train, X_test, y_train, y_test = X[:train_num], X[train_num:], y[:train_num], y
+X_train, X_test, y_train, y_test = X[:train_num], X[train_num:], y[:train_num], y[train_num:]
+
+# shuffle the training set, 打乱训练样本的次序，这一步在有些时候挺有用的
+# 比如样本是排过序的，shuffle后可以保证每种数字的分布是均匀的
+shuffle_index = np.random.permutation(60000) # 这个函数不错
+# print(y_train)
+# print(shuffle_index)
+X_train, y_train = X_train[shuffle_index], y_train[shuffle_index]
+
+## training a binary classifier
+y_train_5 = (y_train == 5)  # True for all 5s, False for all other digits
+y_test_
