@@ -58,4 +58,11 @@ print(predict_result)
 ## performance measures
 # measuring accuracy using cross-validation
 # 利用训练样本进行交叉验证，从训练样本中划分出一小部分作为测试样本
-from sklearn.model_selection imp
+from sklearn.model_selection import StratifiedKFold
+from sklearn.base import clone  # deep copy model without data
+def self_cross_val_score(sgd_clf, X, y, cv):
+    skfolds = StratifiedKFold(n_splits=cv, random_state=42)  # 按照不同的方式取三次样，三次训练样本的个数相同
+    for train_index, test_index in skfolds.split(X_train, y_train_5):
+        clone_clf = clone(sgd_clf)
+        X_train_folds = X[train_index]
+        y_train_folds = y
