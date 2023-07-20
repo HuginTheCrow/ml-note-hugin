@@ -103,4 +103,13 @@ f1_score(y_train_5, y_train_pred)  # F1 score is the harmoinc mean of precision 
 # 所有y的分数(用于与阈值作比较)，不同的阈值导致最后分类的效果不同
 y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3, method='decision_function')
 self_print('y_scores:')
-print(y_scores, y_scores.shap
+print(y_scores, y_scores.shape)
+# 利用函数precision_recall_curve计算不同阈值下预测的准确率和召回率
+precisions, recalls, thresholds = precision_recall_curve(y_train_5, y_scores)
+print(precisions)
+print(recalls)
+print(thresholds)
+self_print('plot precision recall vs threshold')
+def plot_precision_recall_vs_threshold(precisions, recalls, thresholds):
+    plt.plot(thresholds, precisions[:-1], 'b--', label='Precision')
+    plt.plot(threshol
