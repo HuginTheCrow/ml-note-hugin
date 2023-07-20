@@ -95,4 +95,12 @@ con_matrix = confusion_matrix(y_train_5, y_train_pred)
 self_print('confusion matrix')
 print(con_matrix)
 precision_sco =  precision_score(y_train_5, y_train_pred)
-re
+recall_sco = recall_score(y_train_5, y_train_pred)
+self_print('precision & recall')
+print(precision_sco, recall_sco)
+f1_score(y_train_5, y_train_pred)  # F1 score is the harmoinc mean of precision and recall
+
+# 所有y的分数(用于与阈值作比较)，不同的阈值导致最后分类的效果不同
+y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3, method='decision_function')
+self_print('y_scores:')
+print(y_scores, y_scores.shap
