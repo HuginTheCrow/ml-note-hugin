@@ -122,4 +122,17 @@ def plot_precision_recall_vs_threshold(precisions, recalls, thresholds):
 self_print('plot ROC curve')
 fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)
 def plot_roc_curve(fpr, tpr, label=None):
-    plt.plot(fpr, tpr, linewidth=2, la
+    plt.plot(fpr, tpr, linewidth=2, label=label)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.axis([0, 1, 0, 1])
+    plt.xlabel('False Positive Rate')  # 1 - specificity or 1 - precision
+    plt.ylabel('True Positive Rate')  # recall
+# plot_roc_curve(fpr, tpr)
+# plt.show()
+
+# 计算AUC(area under the curve), 最好的分类器AUC=1, 随机分类器AUC=0.5
+print('AUC is', str(roc_auc_score(y_train_5, y_scores)))
+
+
+## random forest classifier, 与随机梯度下降分类器作比较
+# RandomFore
