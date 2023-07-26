@@ -135,4 +135,11 @@ print('AUC is', str(roc_auc_score(y_train_5, y_scores)))
 
 
 ## random forest classifier, 与随机梯度下降分类器作比较
-# RandomFore
+# RandomForestClassifier class 没有decision_function()方法
+from sklearn.ensemble import RandomForestClassifier
+forest_clf = RandomForestClassifier(random_state=42)
+y_probas_forest = cross_val_predict(forest_clf, X_train, y_train_5, cv=3, method='predict_proba')
+# print(y_probas_forest, y_probas_forest.shape)
+# print(X_train[36000])
+# print(y_probas_forest[36000])
+y_scores_forest = y_probas_forest[:, 1]  #
