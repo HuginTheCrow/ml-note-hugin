@@ -29,4 +29,15 @@ some_digit = X[36000]
 
 # show digit's image
 def show_digit_image(digit_features):
-    some_digit_image = some_digit.reshape(2
+    some_digit_image = some_digit.reshape(28, 28)
+    plt.imshow(some_digit_image, cmap=matplotlib.cm.binary, interpolation='nearest')
+    plt.axis('off')
+    plt.show()
+# show_digit_image(some_digit)
+# print(y[36000])
+
+def plot_digits(instances, images_per_row=10, **options):
+    size = 28
+    images_per_row = min(len(instances), images_per_row)
+    images = [instance.reshape(size,size) for instance in instances]
+    n_rows = (len(instan
