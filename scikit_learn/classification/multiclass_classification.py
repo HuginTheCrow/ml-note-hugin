@@ -80,4 +80,13 @@ self_print('Random forest result')
 print(forest_clf.predict([some_digit]))
 print(forest_clf.predict_proba([some_digit]))
 # print('training dataset cross validation...')
-# print(cross_val_score(forest_c
+# print(cross_val_score(forest_clf, X_train, y_train, cv=3, scoring='accuracy'))
+# 对训练集做变换？？
+self_print('scaling the inputs')
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train.astype(np.float64))
+# print(cross_val_score(forest_clf, X_train_scaled, y_train, cv=3, scoring='accuracy'))
+
+# 预测
+y_train_pred = cross_val_predict(forest_clf, X_train_scaled, y_train, cv=3)
+conf_mx = confusion_matrix(
