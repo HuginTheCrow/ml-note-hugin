@@ -69,4 +69,15 @@ sgd_clf.fit(X_train, y_train)
 # 预测
 predict_result = sgd_clf.predict([some_digit])
 print(sgd_clf.classes_)  # 训练以后的模型就有这个值了，所有y值的集合
-print(predict_resu
+print(predict_result)
+# print(X_train, y_train)
+
+# 随机森林模型, 本身就是多类分类器
+from sklearn.ensemble import RandomForestClassifier
+forest_clf = RandomForestClassifier(random_state=42)
+forest_clf.fit(X_train, y_train)
+self_print('Random forest result')
+print(forest_clf.predict([some_digit]))
+print(forest_clf.predict_proba([some_digit]))
+# print('training dataset cross validation...')
+# print(cross_val_score(forest_c
