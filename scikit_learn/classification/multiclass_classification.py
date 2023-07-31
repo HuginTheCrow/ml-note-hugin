@@ -89,4 +89,18 @@ X_train_scaled = scaler.fit_transform(X_train.astype(np.float64))
 
 # 预测
 y_train_pred = cross_val_predict(forest_clf, X_train_scaled, y_train, cv=3)
-conf_mx = confusion_matrix(
+conf_mx = confusion_matrix(y_train, y_train_pred)
+self_print('confusion matrix')
+print(conf_mx)
+# plt.matshow(conf_mx)
+# plt.show()
+#--- plot normalized confusion matrix
+# row_sums = conf_mx.sum(axis=1, keepdims=True)
+# norm_conf_mx = conf_mx / row_sums
+# np.fill_diagonal(norm_conf_mx, 0)
+# plt.matshow(norm_conf_mx, cmap=plt.cm.gray)
+# plt.show()
+
+# 查看分错类的样本
+cl_a, cl_b = 3, 5
+X_aa = X_train[(y_train
