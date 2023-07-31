@@ -111,4 +111,5 @@ plt.figure(figsize=(8, 8))
 plt.subplot(221); plot_digits(X_aa[:25], images_per_row=5)
 plt.subplot(222); plot_digits(X_ab[:25], images_per_row=5)
 plt.subplot(223); plot_digits(X_ba[:25], images_per_row=5)
-plt.subp
+plt.subplot(224); plot_digits(X_bb[:25], images_per_row=5)
+plt.show()
