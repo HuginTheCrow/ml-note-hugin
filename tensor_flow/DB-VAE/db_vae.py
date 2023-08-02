@@ -14,4 +14,11 @@ import mitdeeplearning as mdl
 
 
 def make_standard_classifier(n_outputs=1, n_filters=12):
-    """Function to define a standard CNN m
+    """Function to define a standard CNN model
+    :param n_outputs: the number of units in the last layer
+    :param n_filters: base number of convolutional filters
+    """
+    Conv2D = functools.partial(tf.keras.layers.Conv2D, padding='same', activation='relu')
+    BatchNormalization = tf.keras.layers.BatchNormalization
+    Flatten = tf.keras.layers.Flatten
+    Dense = functools.partial(tf.keras.layers.Dense, activati
