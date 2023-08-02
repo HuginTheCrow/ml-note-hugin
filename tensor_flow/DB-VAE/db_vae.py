@@ -21,4 +21,17 @@ def make_standard_classifier(n_outputs=1, n_filters=12):
     Conv2D = functools.partial(tf.keras.layers.Conv2D, padding='same', activation='relu')
     BatchNormalization = tf.keras.layers.BatchNormalization
     Flatten = tf.keras.layers.Flatten
-    Dense = functools.partial(tf.keras.layers.Dense, activati
+    Dense = functools.partial(tf.keras.layers.Dense, activation='relu')
+
+    model = tf.keras.Sequential([
+        Conv2D(filters=1 * n_filters, kernel_size=5, strides=2),
+        BatchNormalization(),
+
+        Conv2D(filters=2 * n_filters, kernel_size=5, strides=2),
+        BatchNormalization(),
+
+        Conv2D(filters=4 * n_filters, kernel_size=3, strides=2),
+        BatchNormalization(),
+
+        Conv2D(filters=6 * n_filters, kernel_size=3, strides=2),
+        BatchNormalizatio
