@@ -34,4 +34,22 @@ def make_standard_classifier(n_outputs=1, n_filters=12):
         BatchNormalization(),
 
         Conv2D(filters=6 * n_filters, kernel_size=3, strides=2),
-        BatchNormalizatio
+        BatchNormalization(),
+
+        Flatten(),
+        Dense(512),
+        Dense(n_outputs, activation=None),
+    ])
+    return model
+
+
+@tf.function
+def standard_train_step(x, y):
+    with tf.GradientTape() as tape:
+        # feed the images into the model
+        logits = standard_classifier(x)
+        # Compute the loss
+        loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=y, logits=logits)
+
+    # Backpropagation
+    grads = ta
