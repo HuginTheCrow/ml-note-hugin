@@ -52,4 +52,14 @@ def standard_train_step(x, y):
         loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=y, logits=logits)
 
     # Backpropagation
-    grads = ta
+    grads = tape.gradient(loss, standard_classifier.trainable_variables)
+    optimizer.apply_gradients(zip(grads, standard_classifier.trainable_variables))
+    return loss
+
+
+def vae_loss_function(x, x_recon, mu, logsigma, kl_weight=0.0005):
+    """ Function to calculate VAE loss given:
+          an input x,
+          reconstructed output x_recon,
+          encoded means mu,
+          encoded log of standard deviation logsig
