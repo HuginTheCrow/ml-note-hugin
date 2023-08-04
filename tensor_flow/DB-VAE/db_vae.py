@@ -73,4 +73,15 @@ def vae_loss_function(x, x_recon, mu, logsigma, kl_weight=0.0005):
     # difference between the input and reconstruction. Hint: you'll need to
     # use tf.reduce_mean, and supply an axis argument which specifies which
     # dimensions to reduce over. For example, reconstruction loss needs to average
-    # over the height, width, and channel image dimensi
+    # over the height, width, and channel image dimensions.
+    # https://www.tensorflow.org/api_docs/python/tf/math/reduce_mean
+    reconstruction_loss = tf.reduce_mean(tf.abs(tf.math.subtract(x, x_recon)), axis=(1, 2, 3))
+
+    # Define the VAE loss. Note this is given in the equation for L_{VAE}
+    # in the text block directly above
+    vae_loss = kl_weight * latent_loss + reconstruction_loss
+
+    return vae_loss
+
+
+def
