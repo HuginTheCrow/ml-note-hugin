@@ -62,4 +62,9 @@ def vae_loss_function(x, x_recon, mu, logsigma, kl_weight=0.0005):
           an input x,
           reconstructed output x_recon,
           encoded means mu,
-          encoded log of standard deviation logsig
+          encoded log of standard deviation logsigma,
+          weight parameter for the latent loss kl_weight
+    """
+    # Define the latent loss. Note this is given in the equation for L_{KL} in the text block, and measures how closely
+    # the learned latent variables match a unit Gaussian and is defined by the Kullback-Leibler (KL) divergence.
+    latent_loss = 0.5 * tf.reduce_sum(tf.exp(logsigma) + tf.square(mu) - 1.0 - logsigma, axis=
