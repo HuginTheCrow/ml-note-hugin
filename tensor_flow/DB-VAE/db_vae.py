@@ -103,4 +103,15 @@ def sampling(z_mean, z_logsigma):
 
 def debiasing_loss_function(x, x_pred, y, y_logit, mu, logsigma):
     """Loss function for DB-VAE.
-    # Ar
+    # Arguments
+        x: true input x
+        x_pred: reconstructed x
+        y: true label (face or not face)
+        y_logit: predicted labels
+        mu: mean of latent distribution (Q(z|X))
+        logsigma: log of standard deviation of latent distribution (Q(z|X))
+    # Returns
+        total_loss: DB-VAE total loss
+        classification_loss = DB-VAE classification loss
+    """
+    
