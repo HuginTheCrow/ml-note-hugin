@@ -114,4 +114,11 @@ def debiasing_loss_function(x, x_pred, y, y_logit, mu, logsigma):
         total_loss: DB-VAE total loss
         classification_loss = DB-VAE classification loss
     """
-    
+    # call the relevant function to obtain VAE loss
+    vae_loss = vae_loss_function(x=x, x_recon=x_pred, mu=mu, logsigma=logsigma)
+
+    # define the classification loss using sigmoid_cross_entropy
+    # https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits
+    classification_loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=y, logits=y_logit)
+
+    # Use the training data labels to creat
