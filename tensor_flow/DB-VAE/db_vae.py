@@ -93,4 +93,14 @@ def sampling(z_mean, z_logsigma):
     """
     # By default, random.normal is "standard" (ie. mean=0 and std=1.0)
     batch, latent_dim = z_mean.shape  # 32 x 100
-    epsilon 
+    epsilon = tf.random.normal(shape=(batch, latent_dim))
+
+    # Define the reparameterization computation!
+    # Note the equation is given in the text block immediately above.
+    z = z_mean + tf.exp(0.5 * z_logsigma) * epsilon  # changed a little from the center of each sample
+    return z
+
+
+def debiasing_loss_function(x, x_pred, y, y_logit, mu, logsigma):
+    """Loss function for DB-VAE.
+    # Ar
