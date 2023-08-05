@@ -84,4 +84,13 @@ def vae_loss_function(x, x_recon, mu, logsigma, kl_weight=0.0005):
     return vae_loss
 
 
-def
+def sampling(z_mean, z_logsigma):
+    """Reparameterization trick by sampling from an isotropic unit Gaussian.
+    # Arguments
+        z_mean, z_logsigma (tensor): mean and log of standard deviation of latent distribution (Q(z|X))
+    # Returns
+        z (tensor): sampled latent vector
+    """
+    # By default, random.normal is "standard" (ie. mean=0 and std=1.0)
+    batch, latent_dim = z_mean.shape  # 32 x 100
+    epsilon 
