@@ -200,4 +200,11 @@ def make_face_decoder_network(n_filters=12):
     # Build the decoder network using the Sequential API
     decoder = tf.keras.Sequential([
         # Transform to pre-convolutional generation
-        Dense(units=4 * 4 * 6 * n_filters),  # 4x4 feature maps (wit
+        Dense(units=4 * 4 * 6 * n_filters),  # 4x4 feature maps (with 6N occurances)
+        Reshape(target_shape=(4, 4, 6 * n_filters)),
+
+        # Upscaling convolutions (inverse of encoder)
+        Conv2DTranspose(filters=4 * n_filters, kernel_size=3, strides=2),
+        Conv2DTranspose(filters=2 * n_filters, kernel_size=3, strides=2),
+        Conv2DTranspose(filters=1 * n_filters, kernel_size=5, strides=2),
+        Conv2DTranspose(filters=3, kernel_size=5, str
