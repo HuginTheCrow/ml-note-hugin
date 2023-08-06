@@ -132,4 +132,14 @@ def debiasing_loss_function(x, x_pred, y, y_logit, mu, logsigma):
     return total_loss, classification_loss
 
 
-class DB_VAE(tf.kera
+class DB_VAE(tf.keras.Model):
+    def __init__(self, latent_dim):
+        super(DB_VAE, self).__init__()
+        self.latent_dim = latent_dim
+
+        # Define the number of outputs for the encoder. Recall that we have
+        # `latent_dim` latent variables, as well as a supervised output for the
+        # classification (index 0).
+        num_encoder_dims = 2 * self.latent_dim + 1  # 2 * 100 + 1
+
+        
