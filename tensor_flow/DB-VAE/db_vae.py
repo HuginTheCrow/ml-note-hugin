@@ -161,4 +161,14 @@ class DB_VAE(tf.keras.Model):
 
     # VAE reparameterization: given a mean and logsigma, sample latent variables
     def reparameterize(self, z_mean, z_logsigma):
-        # call
+        # call the sampling function defined above
+        z = sampling(z_mean=z_mean, z_logsigma=z_logsigma)
+        return z
+
+    # Decode the latent space and output reconstruction
+    def decode(self, z):
+        # use the decoder to output the reconstruction
+        reconstruction = self.decoder(z)  # how to pass z???
+        return reconstruction
+
+    # The call function will be used to pass inp
