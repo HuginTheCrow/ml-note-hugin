@@ -142,4 +142,14 @@ class DB_VAE(tf.keras.Model):
         # classification (index 0).
         num_encoder_dims = 2 * self.latent_dim + 1  # 2 * 100 + 1
 
-        
+        self.encoder = make_standard_classifier(num_encoder_dims)
+        self.decoder = make_face_decoder_network()
+
+    # function to feed images into encoder, encode the latent space, and output
+    #   classification probability
+    def encode(self, x):
+        # encoder output
+        encoder_output = self.encoder(x)
+
+        # classification prediction
+        y_logit = tf.expand_dims(enc
