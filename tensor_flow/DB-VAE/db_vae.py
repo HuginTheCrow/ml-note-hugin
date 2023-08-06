@@ -121,4 +121,15 @@ def debiasing_loss_function(x, x_pred, y, y_logit, mu, logsigma):
     # https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits
     classification_loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=y, logits=y_logit)
 
-    # Use the training data labels to creat
+    # Use the training data labels to create variable face_indicator:
+    #   indicator that reflects which training data are images of faces
+    face_indicator = tf.cast(tf.equal(y, 1), tf.float32)
+
+    # define the DB-VAE total loss! Use tf.reduce_mean to average over all
+    # samples
+    total_loss = tf.reduce_mean(classification_loss + face_indicator * vae_loss)
+
+    return total_loss, classification_loss
+
+
+class DB_VAE(tf.kera
