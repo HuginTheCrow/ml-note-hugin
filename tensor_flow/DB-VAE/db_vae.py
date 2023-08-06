@@ -152,4 +152,13 @@ class DB_VAE(tf.keras.Model):
         encoder_output = self.encoder(x)
 
         # classification prediction
-        y_logit = tf.expand_dims(enc
+        y_logit = tf.expand_dims(encoder_output[:, 0], -1)
+        # latent variable distribution parameters
+        z_mean = encoder_output[:, 1:self.latent_dim + 1]
+        z_logsigma = encoder_output[:, self.latent_dim + 1:]
+
+        return y_logit, z_mean, z_logsigma
+
+    # VAE reparameterization: given a mean and logsigma, sample latent variables
+    def reparameterize(self, z_mean, z_logsigma):
+        # call
