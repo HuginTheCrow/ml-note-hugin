@@ -171,4 +171,17 @@ class DB_VAE(tf.keras.Model):
         reconstruction = self.decoder(z)  # how to pass z???
         return reconstruction
 
-    # The call function will be used to pass inp
+    # The call function will be used to pass inputs x through the core VAE
+    def call(self, x):
+        # Encode input to a prediction and latent space
+        y_logit, z_mean, z_logsigma = self.encode(x)
+
+        # reparameterization
+        z = self.reparameterize(z_mean=z_mean, z_logsigma=z_logsigma)
+
+        # reconstruction
+        recon = self.decode(z)
+        return y_logit, z_mean, z_logsigma, recon
+
+    # Predict face or not face logit for given input x
+    def predict
