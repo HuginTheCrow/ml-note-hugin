@@ -192,4 +192,12 @@ class DB_VAE(tf.keras.Model):
 def make_face_decoder_network(n_filters=12):
     # Functionally define the different layer types we will use, the decoder portion of the DB-VAE
     Conv2DTranspose = functools.partial(tf.keras.layers.Conv2DTranspose, padding='same', activation='relu')
-    BatchNormalization = tf.keras.layers.
+    BatchNormalization = tf.keras.layers.BatchNormalization
+    Flatten = tf.keras.layers.Flatten
+    Dense = functools.partial(tf.keras.layers.Dense, activation='relu')
+    Reshape = tf.keras.layers.Reshape
+
+    # Build the decoder network using the Sequential API
+    decoder = tf.keras.Sequential([
+        # Transform to pre-convolutional generation
+        Dense(units=4 * 4 * 6 * n_filters),  # 4x4 feature maps (wit
