@@ -184,4 +184,12 @@ class DB_VAE(tf.keras.Model):
         return y_logit, z_mean, z_logsigma, recon
 
     # Predict face or not face logit for given input x
-    def predict
+    def predict(self, x):
+        y_logit, z_mean, z_logsigma = self.encode(x)
+        return y_logit
+
+
+def make_face_decoder_network(n_filters=12):
+    # Functionally define the different layer types we will use, the decoder portion of the DB-VAE
+    Conv2DTranspose = functools.partial(tf.keras.layers.Conv2DTranspose, padding='same', activation='relu')
+    BatchNormalization = tf.keras.layers.
