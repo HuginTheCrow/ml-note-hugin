@@ -207,4 +207,17 @@ def make_face_decoder_network(n_filters=12):
         Conv2DTranspose(filters=4 * n_filters, kernel_size=3, strides=2),
         Conv2DTranspose(filters=2 * n_filters, kernel_size=3, strides=2),
         Conv2DTranspose(filters=1 * n_filters, kernel_size=5, strides=2),
-        Conv2DTranspose(filters=3, kernel_size=5, str
+        Conv2DTranspose(filters=3, kernel_size=5, strides=2),
+    ])
+
+    return decoder
+
+
+def get_latent_mu(images, dbvae, batch_size=1024):
+    # Function to return the means for an input image batch
+    N = images.shape[0]
+    mu = np.zeros((N, latent_dim))
+    for start_ind in range(0, N, batch_size):
+        end_ind = min(start_ind + batch_size, N + 1)
+        batch = (images[start_ind:end_ind]).astype(np.float32) / 255.
+        _, 
