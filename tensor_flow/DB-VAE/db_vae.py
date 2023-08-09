@@ -220,4 +220,14 @@ def get_latent_mu(images, dbvae, batch_size=1024):
     for start_ind in range(0, N, batch_size):
         end_ind = min(start_ind + batch_size, N + 1)
         batch = (images[start_ind:end_ind]).astype(np.float32) / 255.
-        _, 
+        _, batch_mu, _ = dbvae.encode(batch)
+        mu[start_ind:end_ind] = batch_mu
+    return mu
+
+
+def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.001):
+    """Function that recomputes the sampling probabilities for images within a batch
+        based on how they distribute across the training data
+        Resampling algorithm for DB-VAE
+          """
+    print("
