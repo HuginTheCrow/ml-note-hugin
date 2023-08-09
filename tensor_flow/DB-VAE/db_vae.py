@@ -238,4 +238,14 @@ def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.00
     # sampling probabilities for the images
     training_sample_p = np.zeros(mu.shape[0])
     # find the highest density across all latent dimensions for each sample
-    # consider the distrib
+    # consider the distribution for each latent variable
+    for i in range(latent_dim):
+        latent_distribution = mu[:, i]
+        # generate a histogram of the latent distribution
+        hist_density, bin_edges = np.histogram(latent_distribution, density=True, bins=bins)
+
+        # find which latent bin every data sample falls in
+        bin_edges[0] = -float('inf')
+        bin_edges[-1] = float('inf')
+
+      
