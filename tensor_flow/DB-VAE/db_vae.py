@@ -230,4 +230,12 @@ def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.00
         based on how they distribute across the training data
         Resampling algorithm for DB-VAE
           """
-    print("
+    print("Recomputing the sampling probabilities")
+
+    # run the input batch and get the latent variable means, dim[1:101], 54957 x 100
+    mu = get_latent_mu(images=images, dbvae=dbvae)
+
+    # sampling probabilities for the images
+    training_sample_p = np.zeros(mu.shape[0])
+    # find the highest density across all latent dimensions for each sample
+    # consider the distrib
