@@ -263,4 +263,15 @@ def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.00
         # normalize all probabilities, the group of samples which has lower density will be assigned higher prob, cool!
         p = p / np.sum(p)
 
-        # update sampling probabili
+        # update sampling probabilities by considering whether the newly
+        #     computed p is greater than the existing sampling probabilities.
+        training_sample_p = np.maximum(p, training_sample_p)
+
+    # final normalization
+    training_sample_p /= np.sum(training_sample_p)
+
+    return training_sample_p  # the distribution of all positive samples
+
+
+@tf.function
+def debiasing_train_step(x, y, optimizer, dbvae)
