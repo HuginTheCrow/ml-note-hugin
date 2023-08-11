@@ -248,4 +248,11 @@ def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.00
         bin_edges[0] = -float('inf')
         bin_edges[-1] = float('inf')
 
-      
+        # call the digitize function to find which bins in the latent distribution
+        #    every data sample falls in to
+        # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.digitize.html
+        bin_idx = np.digitize(latent_distribution, bin_edges)
+
+        # smooth the density function
+        hist_smoothed_density = hist_density + smoothing_fac
+        hist_smoothed_densit
