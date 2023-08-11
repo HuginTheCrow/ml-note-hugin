@@ -274,4 +274,11 @@ def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.00
 
 
 @tf.function
-def debiasing_train_step(x, y, optimizer, dbvae)
+def debiasing_train_step(x, y, optimizer, dbvae):
+    # To define the training operation, we will use tf.function which is a powerful tool
+    #   that lets us turn a Python function into a TensorFlow computation graph.
+    with tf.GradientTape() as tape:
+        # Feed input x into dbvae. Note that this is using the DB_VAE call function!
+        y_logit, z_mean, z_logsigma, x_recon = dbvae(x)
+
+        '''TODO: call the DB_VAE loss function to compute 
