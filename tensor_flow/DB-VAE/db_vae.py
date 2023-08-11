@@ -255,4 +255,12 @@ def get_training_sample_probabilities(images, dbvae, bins=10, smoothing_fac=0.00
 
         # smooth the density function
         hist_smoothed_density = hist_density + smoothing_fac
-        hist_smoothed_densit
+        hist_smoothed_density = hist_smoothed_density / np.sum(hist_smoothed_density)
+
+        # invert the density function, assign prob for each sample from 10 values, lower density becomes bigger number
+        p = 1.0 / (hist_smoothed_density[bin_idx - 1])
+
+        # normalize all probabilities, the group of samples which has lower density will be assigned higher prob, cool!
+        p = p / np.sum(p)
+
+        # update sampling probabili
