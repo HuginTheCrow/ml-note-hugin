@@ -297,4 +297,14 @@ def debiasing_train_step(x, y, optimizer, dbvae):
 if __name__ == '__main__':
     # datasets
     path_to_training_data = tf.keras.utils.get_file('../../downloads/train_face.h5',
-                                                    'https://www.dropbox.com/s/hlz8atheyozp1yx/train_face
+                                                    'https://www.dropbox.com/s/hlz8atheyozp1yx/train_face.h5?dl=1')
+    loader = mdl.lab2.TrainingDatasetLoader(path_to_training_data)
+    number_of_training_examples = loader.get_train_size()
+    (images, labels) = loader.get_batch(100)
+    ### Define the CNN model ###
+    standard_classifier = make_standard_classifier()
+    ### Train the standard CNN ###
+
+    # Training hyperparameters
+    batch_size = 32
+    num_epochs = 2  # keep small 
