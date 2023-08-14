@@ -287,4 +287,14 @@ def debiasing_train_step(x, y, optimizer, dbvae):
 
     '''TODO: use the GradientTape.gradient method to compute the gradients.
        Hint: this is with respect to the trainable_variables of the dbvae.'''
-    grads = tape.gradient(loss, dbvae.trainable_var
+    grads = tape.gradient(loss, dbvae.trainable_variables)
+
+    # apply gradients to variables
+    optimizer.apply_gradients(zip(grads, dbvae.trainable_variables))
+    return loss
+
+
+if __name__ == '__main__':
+    # datasets
+    path_to_training_data = tf.keras.utils.get_file('../../downloads/train_face.h5',
+                                                    'https://www.dropbox.com/s/hlz8atheyozp1yx/train_face
