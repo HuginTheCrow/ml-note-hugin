@@ -281,4 +281,10 @@ def debiasing_train_step(x, y, optimizer, dbvae):
         # Feed input x into dbvae. Note that this is using the DB_VAE call function!
         y_logit, z_mean, z_logsigma, x_recon = dbvae(x)
 
-        '''TODO: call the DB_VAE loss function to compute 
+        '''TODO: call the DB_VAE loss function to compute the loss'''
+        loss, class_loss = debiasing_loss_function(x=x, x_pred=x_recon, mu=z_mean, logsigma=z_logsigma, y=y,
+                                                   y_logit=y_logit)
+
+    '''TODO: use the GradientTape.gradient method to compute the gradients.
+       Hint: this is with respect to the trainable_variables of the dbvae.'''
+    grads = tape.gradient(loss, dbvae.trainable_var
