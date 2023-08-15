@@ -317,4 +317,12 @@ if __name__ == '__main__':
     if hasattr(tqdm, '_instances'):
         tqdm._instances.clear()  # clear if it exists
 
-    # The tra
+    # The training loop!
+    for epoch in range(num_epochs):
+        for idx in tqdm(range(loader.get_train_size() // batch_size)):
+            # Grab a batch of training data and propagate through the network
+            x, y = loader.get_batch(batch_size)
+            loss = standard_train_step(x, y)
+
+            # Record the loss and plot the evolution of the loss as a function of training
+            loss_history.appen
