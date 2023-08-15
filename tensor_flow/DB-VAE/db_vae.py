@@ -307,4 +307,14 @@ if __name__ == '__main__':
 
     # Training hyperparameters
     batch_size = 32
-    num_epochs = 2  # keep small 
+    num_epochs = 2  # keep small to run faster
+    learning_rate = 5e-4
+    latent_dim = 100  # number of latent variables
+
+    optimizer = tf.keras.optimizers.Adam(learning_rate)  # define our optimizer
+    loss_history = mdl.util.LossHistory(smoothing_factor=0.99)  # to record loss evolution
+    plotter = mdl.util.PeriodicPlotter(sec=2, scale='semilogy')
+    if hasattr(tqdm, '_instances'):
+        tqdm._instances.clear()  # clear if it exists
+
+    # The tra
