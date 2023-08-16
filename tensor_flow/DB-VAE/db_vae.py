@@ -325,4 +325,12 @@ if __name__ == '__main__':
             loss = standard_train_step(x, y)
 
             # Record the loss and plot the evolution of the loss as a function of training
-            loss_history.appen
+            loss_history.append(loss.numpy().mean())
+            plotter.plot(loss_history.get())  # plot loss
+
+    # Evaluation of standard CNN
+    (batch_x, batch_y) = loader.get_batch(5000)
+    y_pred_standard = tf.round(tf.nn.sigmoid(standard_classifier.predict(batch_x)))
+    acc_standard = tf.reduce_mean(tf.cast(tf.equal(batch_y, y_pred_standard), tf.float32))
+
+    print(f'Standard CNN accuracy on (potentially biased) tra
