@@ -333,4 +333,16 @@ if __name__ == '__main__':
     y_pred_standard = tf.round(tf.nn.sigmoid(standard_classifier.predict(batch_x)))
     acc_standard = tf.reduce_mean(tf.cast(tf.equal(batch_y, y_pred_standard), tf.float32))
 
-    print(f'Standard CNN accuracy on (potentially biased) tra
+    print(f'Standard CNN accuracy on (potentially biased) training set: {acc_standard.numpy():.4f}')
+
+    ### Load test dataset and plot examples ###
+
+    test_faces = mdl.lab2.get_test_faces()
+    keys = ["Light Female", "Light Male", "Dark Female", "Dark Male"]
+    for group, key in zip(test_faces, keys):
+        plt.figure(figsize=(5, 5))
+        plt.imshow(np.hstack(group))
+        plt.title(key, fontsize=15)
+    plt.close()
+
+    ### Evaluate the standa
