@@ -345,4 +345,14 @@ if __name__ == '__main__':
         plt.title(key, fontsize=15)
     plt.close()
 
-    ### Evaluate the standa
+    ### Evaluate the standard CNN on the test data ###
+
+    standard_classifier_logits = [standard_classifier(np.array(x, dtype=np.float32)) for x in test_faces]
+    standard_classifier_probs = tf.squeeze(tf.sigmoid(standard_classifier_logits))  # 4 by 5
+
+    # Plot the prediction accuracies per demographic
+    xx = range(len(keys))
+    yy = standard_classifier_probs.numpy().mean(1)  # mean probability
+    plt.bar(xx, yy)
+    plt.xticks(xx, keys)
+    plt.y
