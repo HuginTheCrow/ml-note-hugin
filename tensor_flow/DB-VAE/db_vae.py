@@ -355,4 +355,16 @@ if __name__ == '__main__':
     yy = standard_classifier_probs.numpy().mean(1)  # mean probability
     plt.bar(xx, yy)
     plt.xticks(xx, keys)
-    plt.y
+    plt.ylim(max(0, yy.min() - yy.ptp() / 2.), yy.max() + yy.ptp() / 2.)
+    plt.title("Standard classifier predictions")
+
+    ### Defining the VAE loss function ###
+    ### VAE Reparameterization ###
+    ### Defining and creating the DB-VAE ###
+
+    ### Training the DB-VAE ###
+
+    # Hyperparameters
+    batch_size = 32
+    learning_rate = 5e-4
+    latent_
