@@ -387,4 +387,12 @@ if __name__ == '__main__':
     for i in range(num_epochs):
 
         IPython.display.clear_output(wait=True)
-        print("Starting epoch {}/{}".format(i + 1, num_epochs
+        print("Starting epoch {}/{}".format(i + 1, num_epochs))
+
+        # Recompute data sampling proabilities
+        '''recompute the sampling probabilities for debiasing'''
+        # the probability of being a face for all images
+        p_faces = get_training_sample_probabilities(images=all_faces, dbvae=dbvae)
+
+        # get a batch of training data and compute the training step
+        for j in tqdm(range(loader.get_train_size() // batch_siz
