@@ -405,4 +405,11 @@ if __name__ == '__main__':
             if j % 500 == 0:
                 mdl.util.plot_sample(x, y, dbvae)
 
-    dbvae_logits = [
+    dbvae_logits = [dbvae.predict(np.array(x, dtype=np.float32)) for x in test_faces]
+    dbvae_probs = tf.squeeze(tf.sigmoid(dbvae_logits))
+
+    xx = np.arange(len(keys))
+    plt.bar(xx, standard_classifier_probs.numpy().mean(1), width=0.2, label="Standard CNN")
+    plt.bar(xx + 0.2, dbvae_probs.numpy().mean(1), width=0.2, label="DB-VAE")
+    plt.xticks(xx, keys)
+    plt.title("Network predictions
