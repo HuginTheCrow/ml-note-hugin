@@ -367,4 +367,15 @@ if __name__ == '__main__':
     # Hyperparameters
     batch_size = 32
     learning_rate = 5e-4
-    latent_
+    latent_dim = 100
+
+    # DB-VAE needs slightly more epochs to train since its more complex than
+    # the standard classifier so we use 6 instead of 2
+    num_epochs = 6
+
+    # instantiate a new DB-VAE model and optimizer
+    # dbvae = DB_VAE(100)
+    optimizer = tf.keras.optimizers.Adam(learning_rate)
+
+    # get training faces from data loader
+    all_faces = loader.get_all_tr
