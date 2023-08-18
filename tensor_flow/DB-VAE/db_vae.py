@@ -378,4 +378,13 @@ if __name__ == '__main__':
     optimizer = tf.keras.optimizers.Adam(learning_rate)
 
     # get training faces from data loader
-    all_faces = loader.get_all_tr
+    all_faces = loader.get_all_train_faces()  # only positive samples, 54957 x 64 x 64 x 3
+    dbvae = DB_VAE(latent_dim=latent_dim)
+
+    if hasattr(tqdm, '_instances'): tqdm._instances.clear()  # clear if it exists
+
+    # The training loop -- outer loop iterates over the number of epochs
+    for i in range(num_epochs):
+
+        IPython.display.clear_output(wait=True)
+        print("Starting epoch {}/{}".format(i + 1, num_epochs
