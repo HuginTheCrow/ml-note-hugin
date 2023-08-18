@@ -395,4 +395,14 @@ if __name__ == '__main__':
         p_faces = get_training_sample_probabilities(images=all_faces, dbvae=dbvae)
 
         # get a batch of training data and compute the training step
-        for j in tqdm(range(loader.get_train_size() // batch_siz
+        for j in tqdm(range(loader.get_train_size() // batch_size)):
+            # load a batch of data
+            (x, y) = loader.get_batch(batch_size, p_pos=p_faces)  # also got some negative samples
+            # loss optimization
+            loss = debiasing_train_step(x, y, optimizer=optimizer, dbvae=dbvae)
+
+            # plot the progress every 200 steps
+            if j % 500 == 0:
+                mdl.util.plot_sample(x, y, dbvae)
+
+    dbvae_logits = [
