@@ -412,4 +412,7 @@ if __name__ == '__main__':
     plt.bar(xx, standard_classifier_probs.numpy().mean(1), width=0.2, label="Standard CNN")
     plt.bar(xx + 0.2, dbvae_probs.numpy().mean(1), width=0.2, label="DB-VAE")
     plt.xticks(xx, keys)
-    plt.title("Network predictions
+    plt.title("Network predictions on test dataset")
+    plt.ylabel("Probability")
+    plt.legend(bbox_to_anchor=(1.04, 1), loc="upper left")
+    plt.show()
