@@ -6,4 +6,17 @@
 #                                                                                      #
 # Model from https://gist.github.com/ksimonyan/211839e770f7b538e2d8#file-readme-md     #
 # Weights from Caffe converted using https://github.com/ethereon/caffe-tensorflow      #
-###
+########################################################################################
+
+import tensorflow as tf
+import numpy as np
+from scipy.misc import imread, imresize
+from .imagenet_classes import class_names
+
+
+class vgg16:
+    def __init__(self, imgs, weights=None, sess=None):
+        self.imgs = imgs
+        self.convlayers()
+        self.fc_layers()
+        self.probs = tf.nn.softmax(self.
