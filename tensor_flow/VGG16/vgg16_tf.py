@@ -19,4 +19,17 @@ class vgg16:
         self.imgs = imgs
         self.convlayers()
         self.fc_layers()
-        self.probs = tf.nn.softmax(self.
+        self.probs = tf.nn.softmax(self.fc3l)
+        if weights is not None and sess is not None:
+            self.load_weights(weights, sess)
+
+
+    def convlayers(self):
+        self.parameters = []
+
+        # zero-mean input
+        with tf.name_scope('preprocess') as scope:
+            mean = tf.constant([123.68, 116.779, 103.939], dtype=tf.float32, shape=[1, 1, 1, 3], name='img_mean')
+            images = self.imgs-mean
+
+     
