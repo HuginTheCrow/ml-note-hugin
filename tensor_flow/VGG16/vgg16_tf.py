@@ -52,4 +52,15 @@ class vgg16:
                                  trainable=True, name='biases')
             out = tf.nn.bias_add(conv, biases)
             self.conv1_2 = tf.nn.relu(out, name=scope)
-            self.parameters += [ker
+            self.parameters += [kernel, biases]
+
+        # pool1
+        self.pool1 = tf.nn.max_pool(self.conv1_2,
+                               ksize=[1, 2, 2, 1],
+                               strides=[1, 2, 2, 1],
+                               padding='SAME',
+                               name='pool1')
+
+        # conv2_1
+        with tf.name_scope('conv2_1') as scope:
+            kernel = tf.Variable(tf.truncated_normal([3, 3, 64,
