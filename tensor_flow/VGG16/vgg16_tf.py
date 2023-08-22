@@ -68,4 +68,12 @@ class vgg16:
             conv = tf.nn.conv2d(self.pool1, kernel, [1, 1, 1, 1], padding='SAME')
             biases = tf.Variable(tf.constant(0.0, shape=[128], dtype=tf.float32),
                                  trainable=True, name='biases')
-            out = tf.nn.bias_add(conv
+            out = tf.nn.bias_add(conv, biases)
+            self.conv2_1 = tf.nn.relu(out, name=scope)
+            self.parameters += [kernel, biases]
+
+        # conv2_2
+        with tf.name_scope('conv2_2') as scope:
+            kernel = tf.Variable(tf.truncated_normal([3, 3, 128, 128], dtype=tf.float32,
+                                                     stddev=1e-1), name='weights')
+            conv = tf.nn.conv2d(self.conv2
