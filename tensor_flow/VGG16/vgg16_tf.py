@@ -120,4 +120,16 @@ class vgg16:
             biases = tf.Variable(tf.constant(0.0, shape=[256], dtype=tf.float32),
                                  trainable=True, name='biases')
             out = tf.nn.bias_add(conv, biases)
-            self.conv3_3 = tf.nn.relu(out, name=
+            self.conv3_3 = tf.nn.relu(out, name=scope)
+            self.parameters += [kernel, biases]
+
+        # pool3
+        self.pool3 = tf.nn.max_pool(self.conv3_3,
+                               ksize=[1, 2, 2, 1],
+                               strides=[1, 2, 2, 1],
+                               padding='SAME',
+                               name='pool3')
+
+        # conv4_1
+        with tf.name_scope('conv4_1') as scope:
+            ke
