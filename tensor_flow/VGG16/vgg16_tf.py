@@ -132,4 +132,8 @@ class vgg16:
 
         # conv4_1
         with tf.name_scope('conv4_1') as scope:
-            ke
+            kernel = tf.Variable(tf.truncated_normal([3, 3, 256, 512], dtype=tf.float32,
+                                                     stddev=1e-1), name='weights')
+            conv = tf.nn.conv2d(self.pool3, kernel, [1, 1, 1, 1], padding='SAME')
+            biases = tf.Variable(tf.constant(0.0, shape=[512], dtype=tf.float32),
+                                 trainable=True, name='biases')
