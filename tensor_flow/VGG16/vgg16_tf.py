@@ -166,4 +166,11 @@ class vgg16:
         # pool4
         self.pool4 = tf.nn.max_pool(self.conv4_3,
                                ksize=[1, 2, 2, 1],
-                 
+                               strides=[1, 2, 2, 1],
+                               padding='SAME',
+                               name='pool4')
+
+        # conv5_1
+        with tf.name_scope('conv5_1') as scope:
+            kernel = tf.Variable(tf.truncated_normal([3, 3, 512, 512], dtype=tf.float32,
+                                                     stddev=1e-1), name='weights')
