@@ -217,4 +217,13 @@ class vgg16:
             fc1w = tf.Variable(tf.truncated_normal([shape, 4096],
                                                          dtype=tf.float32,
                                                          stddev=1e-1), name='weights')
-            fc1b = tf.Variable(tf.constant(1.0, shape=[4096], dtype
+            fc1b = tf.Variable(tf.constant(1.0, shape=[4096], dtype=tf.float32),
+                                 trainable=True, name='biases')
+            pool5_flat = tf.reshape(self.pool5, [-1, shape])
+            fc1l = tf.nn.bias_add(tf.matmul(pool5_flat, fc1w), fc1b)
+            self.fc1 = tf.nn.relu(fc1l)
+            self.parameters += [fc1w, fc1b]
+
+        # fc2
+        with tf.name_scope('fc2') as scope:
+            fc2w = 
