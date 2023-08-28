@@ -226,4 +226,9 @@ class vgg16:
 
         # fc2
         with tf.name_scope('fc2') as scope:
-            fc2w = 
+            fc2w = tf.Variable(tf.truncated_normal([4096, 4096],
+                                                         dtype=tf.float32,
+                                                         stddev=1e-1), name='weights')
+            fc2b = tf.Variable(tf.constant(1.0, shape=[4096], dtype=tf.float32),
+                                 trainable=True, name='biases')
+            fc2l = tf.nn.bias_add(tf.matmul(self
