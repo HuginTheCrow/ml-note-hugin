@@ -211,4 +211,10 @@ class vgg16:
                                name='pool4')
 
     def fc_layers(self):
-        # 
+        # fc1
+        with tf.name_scope('fc1') as scope:
+            shape = int(np.prod(self.pool5.get_shape()[1:]))
+            fc1w = tf.Variable(tf.truncated_normal([shape, 4096],
+                                                         dtype=tf.float32,
+                                                         stddev=1e-1), name='weights')
+            fc1b = tf.Variable(tf.constant(1.0, shape=[4096], dtype
