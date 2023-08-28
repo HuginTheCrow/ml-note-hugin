@@ -200,4 +200,15 @@ class vgg16:
             biases = tf.Variable(tf.constant(0.0, shape=[512], dtype=tf.float32),
                                  trainable=True, name='biases')
             out = tf.nn.bias_add(conv, biases)
-      
+            self.conv5_3 = tf.nn.relu(out, name=scope)
+            self.parameters += [kernel, biases]
+
+        # pool5
+        self.pool5 = tf.nn.max_pool(self.conv5_3,
+                               ksize=[1, 2, 2, 1],
+                               strides=[1, 2, 2, 1],
+                               padding='SAME',
+                               name='pool4')
+
+    def fc_layers(self):
+        # 
