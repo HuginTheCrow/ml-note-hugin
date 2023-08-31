@@ -240,4 +240,13 @@ class vgg16:
             fc3w = tf.Variable(tf.truncated_normal([4096, 1000],
                                                          dtype=tf.float32,
                                                          stddev=1e-1), name='weights')
-            fc3
+            fc3b = tf.Variable(tf.constant(1.0, shape=[1000], dtype=tf.float32),
+                                 trainable=True, name='biases')
+            self.fc3l = tf.nn.bias_add(tf.matmul(self.fc2, fc3w), fc3b)
+            self.parameters += [fc3w, fc3b]
+
+    def load_weights(self, weight_file, sess):
+        weights = np.load(weight_file)
+        keys = sorted(weights.keys())
+        for i, k in enumerate(keys):
+            print(i
