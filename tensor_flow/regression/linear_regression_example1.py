@@ -8,4 +8,18 @@ import tensorflow as tf
 
 # define input data
 X_data = np.arange(100, step=.1)
-y_da
+y_data = X_data + 20 * np.sin(X_data/10)
+
+# define data size and batch size
+n_samples = 1000
+batch_size = 100
+
+# tensorflow is finicky about shapes, so resize
+X_data = np.reshape(X_data, (n_samples, 1))
+y_data = np.reshape(y_data, (n_samples, 1))
+
+# define placeholders for input
+X = tf.placeholder(tf.float32, shape=(batch_size, 1))
+y = tf.placeholder(tf.float32, shape=(batch_size, 1))
+
+# define variables to b
