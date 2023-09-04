@@ -42,4 +42,15 @@ with tf.Session() as sess:
         # select random minibatch
         indices = np.random.choice(n_samples, batch_size)
         X_batch, y_batch = X_data[indices], y_data[indices]
-        # do gradient d
+        # do gradient descent step
+        _, loss_val = sess.run([opt_operation, loss], feed_dict={X: X_batch, y: y_batch})
+        if loss_val <= best_para['loss_val']:
+            best_para['loss_val'] = loss_val
+            best_para['W'] = W.eval()
+            best_para['b'] = b.eval()
+            print(W.eval(), b.eval())
+            print(loss_val)
+
+# plot input data
+plt.scatter(X_data, y_data)
+y_pre
