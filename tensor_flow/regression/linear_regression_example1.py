@@ -31,4 +31,15 @@ with tf.variable_scope('linear-regression'):
 
 # sample code to run one step of gradient descent
 opt = tf.train.AdamOptimizer()
-opt_operation = op
+opt_operation = opt.minimize(loss)
+
+best_para = {'W':0, 'b':0, 'loss_val':100}
+with tf.Session() as sess:
+    # initialize variables in graph
+    sess.run(tf.initialize_all_variables())
+    # gradient descent loop for 500 steps
+    for i in range(5000):
+        # select random minibatch
+        indices = np.random.choice(n_samples, batch_size)
+        X_batch, y_batch = X_data[indices], y_data[indices]
+        # do gradient d
