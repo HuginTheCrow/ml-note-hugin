@@ -31,4 +31,19 @@ y = tf.constant(housing.target.reshape(-1, 1), dtype=tf.float32, name='y')
 
 def reset_graph(seed=42):
     tf.reset_default_graph()
-    tf.set_random_see
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
+
+
+# 方法1：使用正规方程直接求参数
+def get_theta_by_normal_equation(X, y):
+    XT = tf.transpose(X)
+    theta = tf.matmul(tf.matmul(tf.matrix_inverse(tf.matmul(XT, X)), XT), y)
+    with tf.Session() as sess:
+        theta_value = theta.eval()
+        print(theta_value)
+
+# 方法2：梯度下降法训练参数（手动求导）
+def train_theta_by_gradient_descent(X, y):
+    global m
+    n_epochs = 1000  # 迭
