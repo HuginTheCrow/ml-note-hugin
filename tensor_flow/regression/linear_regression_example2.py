@@ -53,4 +53,16 @@ def train_theta_by_gradient_descent(X, y):
     error = y_pred - y
     mse = tf.reduce_mean(tf.square(error), name='mse')
     gradients = 2.0/m * tf.matmul(tf.transpose(X), error)
-    training_op = tf.assign(theta, theta - learning_rate * gr
+    training_op = tf.assign(theta, theta - learning_rate * gradients)
+    init = tf.global_variables_initializer()
+    with tf.Session() as sess:
+        sess.run(init)
+        for epoch in range(n_epochs):
+            if epoch % 10 == 0:
+                print('Epoch', epoch, 'MSE =', mse.eval())
+            sess.run(training_op)
+        best_theta = theta.eval()
+        print('Best theta is', best_theta)
+# train_theta_by_gradient_descent(X_scaled, y)
+
+# 方法
