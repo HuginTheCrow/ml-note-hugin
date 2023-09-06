@@ -65,4 +65,14 @@ def train_theta_by_gradient_descent(X, y):
         print('Best theta is', best_theta)
 # train_theta_by_gradient_descent(X_scaled, y)
 
-# 方法
+# 方法3：梯度下降法训练参数（自动求导）
+def train_theta_by_autodiff(X, y):
+    global m
+    n_epochs = 10000
+    learning_rate = 0.0000003  # 学习率不能太大
+    theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0), name='theta')
+    y_pred = tf.matmul(X, theta, name='predictions')
+    error = y_pred - y
+    mse = tf.reduce_mean(tf.square(error), name='mse')
+    # gradients = 2.0/m * tf.matmul(tf.transpose(X), error)
+    gradients
