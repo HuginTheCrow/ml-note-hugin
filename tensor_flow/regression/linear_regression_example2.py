@@ -75,4 +75,11 @@ def train_theta_by_autodiff(X, y):
     error = y_pred - y
     mse = tf.reduce_mean(tf.square(error), name='mse')
     # gradients = 2.0/m * tf.matmul(tf.transpose(X), error)
-    gradients
+    gradients = tf.gradients(ys=mse, xs=[theta])[0]  # 自动对代价函数求导，代价函数是参数theta的函数
+    training_op = tf.assign(theta, theta - learning_rate * gradients)
+    init = tf.global_variables_initializer()
+    with tf.Session() as sess:
+        sess.run(init)
+        for epoch in range(n_epochs):
+            if epoch % 10 == 0:
+                print('Epoch', epoch, 'MSE =', m
