@@ -82,4 +82,16 @@ def train_theta_by_autodiff(X, y):
         sess.run(init)
         for epoch in range(n_epochs):
             if epoch % 10 == 0:
-                print('Epoch', epoch, 'MSE =', m
+                print('Epoch', epoch, 'MSE =', mse.eval())
+            sess.run(training_op)
+        best_theta = theta.eval()
+        print('Best theta is', best_theta)
+# train_theta_by_autodiff(X, y)
+
+# 方法4：使用优化器训练参数（Optimizer）
+def train_theta_by_optimizer(X, y):
+    global m
+    n_epochs = 10000
+    learning_rate = 0.0000003  # 学习率不能太大
+    theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0), name='theta')
+    y_pred = tf.
