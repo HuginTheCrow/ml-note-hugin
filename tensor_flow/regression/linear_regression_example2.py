@@ -104,4 +104,11 @@ def train_theta_by_optimizer(X, y):
 
     # using an optimizer
     # 效果跟上面的方法差不多，只是更加简便
-    # optimizer = tf.train.GradientDescen
+    # optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)  # gradient descent optimizer
+    optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9) # momentum optimizer
+    training_op = optimizer.minimize(mse)  # 用优化器最小化代价函数mse
+
+    init = tf.global_variables_initializer()
+    with tf.Session() as sess:
+        sess.run(init)
+        for epoch in range(n_epoc
