@@ -94,4 +94,14 @@ def train_theta_by_optimizer(X, y):
     n_epochs = 10000
     learning_rate = 0.0000003  # 学习率不能太大
     theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0), name='theta')
-    y_pred = tf.
+    y_pred = tf.matmul(X, theta, name='predictions')
+    error = y_pred - y
+    mse = tf.reduce_mean(tf.square(error), name='mse')
+
+    # gradients = 2.0/m * tf.matmul(tf.transpose(X), error)
+    # gradients = tf.gradients(ys=mse, xs=[theta])[0]  # 自动对代价函数求导，代价函数是参数theta的函数
+    # training_op = tf.assign(theta, theta - learning_rate * gradients)
+
+    # using an optimizer
+    # 效果跟上面的方法差不多，只是更加简便
+    # optimizer = tf.train.GradientDescen
