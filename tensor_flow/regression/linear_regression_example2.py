@@ -111,4 +111,16 @@ def train_theta_by_optimizer(X, y):
     init = tf.global_variables_initializer()
     with tf.Session() as sess:
         sess.run(init)
-        for epoch in range(n_epoc
+        for epoch in range(n_epochs):
+            if epoch % 10 == 0:
+                print('Epoch', epoch, 'MSE =', mse.eval())
+            sess.run(training_op)
+        best_theta = theta.eval()
+        print('Best theta is', best_theta)
+# train_theta_by_optimizer(X, y)
+
+
+# 方法5：使用小批次梯度下降(Mini-batch Gradient Descent)方法训练参数
+# 实际上是随机梯度下降法，因为每次只使用一部分数据，因此训练过程中cost不是逐渐减小，而是会出现一定的波动
+# 这里有两个很重要的概念：epoch and batch
+# - ba
