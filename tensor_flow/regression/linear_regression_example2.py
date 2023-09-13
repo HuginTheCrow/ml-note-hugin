@@ -140,4 +140,14 @@ def train_theta_by_mini_batch_gd():
     error = y_pred - y
     mse = tf.reduce_mean(tf.square(error), name='mse')
 
-    # using an o
+    # using an optimizer
+    optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9) # momentum optimizer
+    training_op = optimizer.minimize(mse)  # 用优化器最小化代价函数mse
+
+    init = tf.global_variables_initializer()
+
+    batch_size = 100
+    n_batches = int(np.ceil(m / batch_size))
+
+    def fetch_batch(epoch, batch_index, batch_size):
+        np.random.seed(epoch * n_batches + batch_index)  # 每次生成不同
