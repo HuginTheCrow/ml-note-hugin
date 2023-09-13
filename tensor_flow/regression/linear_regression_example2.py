@@ -131,4 +131,13 @@ def train_theta_by_optimizer(X, y):
 def train_theta_by_mini_batch_gd():
     global m, scaled_housing_data_plus_bias, housing
     n_epochs = 100
-    learning_ra
+    learning_rate = 0.00001
+    reset_graph()
+    X = tf.placeholder(tf.float32, shape=(None, n + 1), name='X')
+    y = tf.placeholder(tf.float32, shape=(None, 1), name='y')
+    theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0, seed=42), name='theta')
+    y_pred = tf.matmul(X, theta, name='predictions')
+    error = y_pred - y
+    mse = tf.reduce_mean(tf.square(error), name='mse')
+
+    # using an o
