@@ -13,4 +13,13 @@ print(m, n)
 # X的缩放对后面的训练过程影响非常大，经过缩放的数据经过很少的迭代次数就可以收敛，学习率可以设得很大
 scaler = StandardScaler()
 scaled_housing_data = scaler.fit_transform(housing.data)
-scaled_housing_data_plus_bias = np.c_[np.ones((m, 1)), scaled_housi
+scaled_housing_data_plus_bias = np.c_[np.ones((m, 1)), scaled_housing_data]
+X_scaled = tf.constant(scaled_housing_data_plus_bias, dtype=tf.float32, name='X_scaled')
+y = tf.constant(housing.target.reshape(-1, 1), dtype=tf.float32, name='y')
+
+# 方法2：梯度下降法训练参数（手动求导）
+def train_theta_by_gradient_descent(X, y):
+    global m
+    n_epochs = 1000  # 迭代次数
+    learning_rate = 0.01  # 之前学习率不能太大是因为X没有做缩放
+    theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0), name='thet
