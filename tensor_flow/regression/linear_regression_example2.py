@@ -168,4 +168,4 @@ def train_theta_by_mini_batch_gd():
                 print('Epoch', epoch, 'MSE =', loss)
         best_theta = theta.eval()
         print('Best theta is', best_theta)
-trai
+train_theta_by_mini_batch_gd()
