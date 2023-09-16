@@ -38,4 +38,14 @@ def train_theta_by_gradient_descent(X, y):
                 saver.save(sess=sess, save_path='cv/my_model.ckpt')
             sess.run(training_op)
         best_theta = theta.eval()
-        print('The last MSE i
+        print('The last MSE is', mse.eval())
+        print('Best theta is', best_theta)
+        saver.save(sess=sess, save_path='cv/my_model_final.ckpt')
+# train_theta_by_gradient_descent(X_scaled, y)
+
+def train_theta_by_gd_load_para(X, y):
+    # global m
+    # n_epochs = 1000  # 迭代次数
+    # learning_rate = 0.01  # 之前学习率不能太大是因为X没有做缩放
+    theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0), name='theta')
+    y_pred = tf.m
